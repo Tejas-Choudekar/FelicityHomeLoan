@@ -8,12 +8,15 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.lti.felicityhomeloan.dto.LoginDTO;
 import com.lti.felicityhomeloan.entity.IncomeDetailsEntity;
 import com.lti.felicityhomeloan.entity.LoanDetailsEntity;
 import com.lti.felicityhomeloan.entity.PersonalDetailsEntity;
 import com.lti.felicityhomeloan.entity.PropertyDetailsEntity;
 import com.lti.felicityhomeloan.repository.HomeLoanRepository;
+import com.lti.felicityhomeloan.repository.LoginRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -23,7 +26,12 @@ public class FelicityHomeLoanApplicationTests {
 	
 	@Autowired
 	private HomeLoanRepository homeLoanRepo;
+	
+	@Autowired
+	private LoginRepository loginRepo;
 	PropertyDetailsEntity propertyDetails = new PropertyDetailsEntity();
+	
+	
 
 	@Test
 	public void contextLoads() {
@@ -38,8 +46,7 @@ public class FelicityHomeLoanApplicationTests {
 	@Test
 	public void testIncomeDetails() {
 		IncomeDetailsEntity incomeDetails = new IncomeDetailsEntity();
-		incomeDetails.setApplicationId(propertyDetails.getApplicationid());
-		incomeDetails.setTypeOfEmployee("Self employeed");
+		incomeDetails.setTypeOfEmployee("Selfemployeed");
 		incomeDetails.setRetirementAge(68);
 		incomeDetails.setOrganisationType("Entertainment");
 		incomeDetails.setEmployeerName("Bollywood");
@@ -51,7 +58,7 @@ public class FelicityHomeLoanApplicationTests {
 	@Test
 	public void testLoanDetails() {
 		LoanDetailsEntity loanDetails = new LoanDetailsEntity();
-		loanDetails.setApplicationId(propertyDetails.getApplicationid());
+		//loanDetails.setApplicationId(0003);
 		loanDetails.setMaxGrantableLoan(50000);
 		loanDetails.setRateOfInterest(5);
 		loanDetails.setTenure(2);
@@ -62,7 +69,7 @@ public class FelicityHomeLoanApplicationTests {
 	@Test
 	public void testPersonalDetails () {
 		PersonalDetailsEntity personalDetails = new PersonalDetailsEntity();
-		personalDetails.setApplicationId(propertyDetails.getApplicationid());
+		//personalDetails.setApplicationId(0003);
 		personalDetails.setFirstName("Amitabh");
 		personalDetails.setLastName("Bacchan");
 		personalDetails.setMiddleName("Rajesh");
@@ -76,6 +83,15 @@ public class FelicityHomeLoanApplicationTests {
 		personalDetails.setPanNumber("BUCKO210K");
 		personalDetails.setGender("Male");
 		homeLoanRepo.genericadd(personalDetails);
+	}
+	
+	@Test
+	@Transactional
+	public void testLogin () {
+		LoginDTO login = new LoginDTO();
+		login.setEmailId("amit.bacchan@gmail.com");
+		login.setPassword("amitbacchan123");
+		loginRepo.fetchUser(login);
 	}
 
 }

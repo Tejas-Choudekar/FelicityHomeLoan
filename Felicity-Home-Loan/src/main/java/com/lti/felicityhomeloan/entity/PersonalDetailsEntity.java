@@ -1,15 +1,19 @@
 package com.lti.felicityhomeloan.entity;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+@SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
 @Entity
 @Table(name="PERSONAL_DETAILS")
 public class PersonalDetailsEntity {
     
-	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
+    @Id
     private int applicationId;
 	private String firstName;
 	private String middleName;
@@ -23,6 +27,7 @@ public class PersonalDetailsEntity {
 	private String nationality;
 	private String adharNumber;
 	private String panNumber;
+	
 	public int getApplicationId() {
 		return applicationId;
 	}
