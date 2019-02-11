@@ -6,10 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @SequenceGenerator(name="seq", initialValue=1, allocationSize=100)
 @Entity
-@Table(name="PERSONAL_DETAILS")
+@Table(name="PERSONAL_DETAILS", uniqueConstraints=@UniqueConstraint(columnNames="EMAILID"))
 public class PersonalDetailsEntity {
     
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seq")
