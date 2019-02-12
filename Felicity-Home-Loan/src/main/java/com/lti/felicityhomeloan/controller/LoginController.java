@@ -18,15 +18,16 @@ public class LoginController {
 	private LoginService loginService;
 	
 	@CrossOrigin
-	@RequestMapping(path="/logindto/userlogin", method=RequestMethod.POST)
+	@RequestMapping(path="/login/userlogin", method=RequestMethod.POST)
 	public String loginUser(@RequestBody LoginDTO loginDTO) {
 		boolean isValidUser= loginService.validateUser(loginDTO);
 		
-		if(isValidUser)
-			return "Login Successfully";
-		
-		return "Username or Password invalid";
-		
+		if(isValidUser) {
+			return "{\"status\" : \"Logged in Successfully!\"}";
+		}
+		else {
+		return "{\"status\" : \"Username or password invalid!\"}";
+		}
 		//return "{\"status\" : \"Property Details added successfully!\"}";
 	}
 }

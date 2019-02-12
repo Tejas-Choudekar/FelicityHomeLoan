@@ -22,7 +22,6 @@ public class LoginRepository {
 	query.setParameter("password", loginDTO.getPassword());
 	
 	try {
-		query.getSingleResult();
 		return (PersonalDetailsEntity) query.getSingleResult();
 	}
 	catch (NoResultException noResultException) {

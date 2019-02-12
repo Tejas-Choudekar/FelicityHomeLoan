@@ -70,18 +70,18 @@ public class FelicityHomeLoanApplicationTests {
 	public void testPersonalDetails () {
 		PersonalDetailsEntity personalDetails = new PersonalDetailsEntity();
 		//personalDetails.setApplicationId(0003);
-		personalDetails.setFirstName("Amitabh");
-		personalDetails.setLastName("Bacchan");
-		personalDetails.setMiddleName("Rajesh");
-		personalDetails.setBirthDate("17/05/1946");
+		personalDetails.setFirstName("Prathyusha");
+		personalDetails.setLastName("Muthineni");
+		personalDetails.setMiddleName("Rao");
+		personalDetails.setBirthDate("16/11/1996");
 		personalDetails.setPhoneNumber("9209848233");
 		personalDetails.setAdharNumber("440030014246");
 		personalDetails.setNationality("Indian");
-		personalDetails.setEmailId("amit.bacchan@gmail.com");
-		personalDetails.setPassword("amitbacchan123");
-		personalDetails.setConfirmPassword("amitbacchan123");
+		personalDetails.setEmailId("pritirao@gmail.com");
+		personalDetails.setPassword("priti123");
+		personalDetails.setConfirmPassword("priti123");
 		personalDetails.setPanNumber("BUCKO210K");
-		personalDetails.setGender("Male");
+		personalDetails.setGender("Female");
 		homeLoanRepo.genericadd(personalDetails);
 	}
 	
