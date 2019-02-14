@@ -13,21 +13,20 @@ import com.lti.felicityhomeloan.service.LoginService;
 @RestController
 @CrossOrigin
 public class LoginController {
-	
+
 	@Autowired
 	private LoginService loginService;
-	
+
 	@CrossOrigin
-	@RequestMapping(path="/login/userlogin", method=RequestMethod.POST)
+	@RequestMapping(path = "/login/userlogin", method = RequestMethod.POST)
 	public String loginUser(@RequestBody LoginDTO loginDTO) {
-		boolean isValidUser= loginService.validateUser(loginDTO);
-		
-		if(isValidUser) {
+		boolean isValidUser = loginService.validateUser(loginDTO);
+
+		if (isValidUser) {
 			return "{\"status\" : \"Logged in Successfully!\"}";
+		} else {
+			return "{\"status\" : \"Username or password invalid!\"}";
 		}
-		else {
-		return "{\"status\" : \"Username or password invalid!\"}";
-		}
-		//return "{\"status\" : \"Property Details added successfully!\"}";
+		// return "{\"status\" : \"Property Details added successfully!\"}";
 	}
 }

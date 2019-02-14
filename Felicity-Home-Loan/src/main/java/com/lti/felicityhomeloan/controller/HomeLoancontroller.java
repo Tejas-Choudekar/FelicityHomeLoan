@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lti.felicityhomeloan.entity.IncomeDetailsEntity;
-import com.lti.felicityhomeloan.entity.LoanDetailsEntity;
-import com.lti.felicityhomeloan.entity.PersonalDetailsEntity;
-import com.lti.felicityhomeloan.entity.PropertyDetailsEntity;
+import com.lti.felicityhomeloan.entity.IncomeDetails;
+import com.lti.felicityhomeloan.entity.LoanDetails;
+import com.lti.felicityhomeloan.entity.PersonalDetails;
+import com.lti.felicityhomeloan.entity.PropertyDetails;
 import com.lti.felicityhomeloan.service.HomeLoanService;
 
 @RestController
@@ -18,34 +18,34 @@ import com.lti.felicityhomeloan.service.HomeLoanService;
 public class HomeLoancontroller {
 	@Autowired
 	private HomeLoanService homeLoanService;
-	
-	@RequestMapping(path="/propertydetailsentity/genericadd", method=RequestMethod.POST)
-	public String add(@RequestBody PropertyDetailsEntity propertyDetails) {
+
+	@RequestMapping(path = "/propertydetails/add", method = RequestMethod.POST)
+	public String add(@RequestBody PropertyDetails propertyDetails) {
 		homeLoanService.add(propertyDetails);
-		return "{\"status\" : \"Property Detais added successfully!\"}";
+		return "{\"status\" : \"Property Details added successfully!\"}";
 	}
-	
-	@RequestMapping(path="/incomedetailsentity/genericadd", method=RequestMethod.POST)
-	public String add(@RequestBody IncomeDetailsEntity incomeDetails) {
+
+	@RequestMapping(path = "/incomedetails/add", method = RequestMethod.POST)
+	public String add(@RequestBody IncomeDetails incomeDetails) {
 		homeLoanService.add(incomeDetails);
-		return "{\"status\" : \"Income Detais added successfully!\"}";
+		return "{\"status\" : \"Income Details added successfully!\"}";
 	}
-	
-	@RequestMapping(path="/loandetailsentity/genericadd", method=RequestMethod.POST)
-	public String add(@RequestBody LoanDetailsEntity loanDetails) {
+
+	@RequestMapping(path = "/loandetails/add", method = RequestMethod.POST)
+	public String add(@RequestBody LoanDetails loanDetails) {
 		homeLoanService.add(loanDetails);
-		return "{\"status\" : \"Loan Detais added successfully!\"}";
+		return "{\"status\" : \"Loan Details added successfully!\"}";
 	}
-	
-	@RequestMapping(path="/personaldetailsentity/genericadd", method=RequestMethod.POST)
-	public String add(@RequestBody PersonalDetailsEntity personalDetails) {
+
+	@RequestMapping(path = "/personaldetails/add", method = RequestMethod.POST)
+	public String add(@RequestBody PersonalDetails personalDetails) {
 		homeLoanService.add(personalDetails);
-		return "{\"status\" : \"Personal Detais added successfully!\"}";
+		return "{\"status\" : \"Personal Details added successfully!\"}";
 	}
-	
-	//@RequestMapping(path="/movie/{id}", method=RequestMethod.GET)
-	//public Movie fetch(@PathVariable("id") int id) {
-		//return movieService.fetch(id);
-	//}
+
+	// @RequestMapping(path="/movie/{id}", method=RequestMethod.GET)
+	// public Movie fetch(@PathVariable("id") int id) {
+	// return movieService.fetch(id);
+	// }
 
 }

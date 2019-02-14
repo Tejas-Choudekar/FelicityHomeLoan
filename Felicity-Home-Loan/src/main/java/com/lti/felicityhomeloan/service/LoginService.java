@@ -11,10 +11,10 @@ import com.lti.felicityhomeloan.repository.LoginRepository;
 public class LoginService {
 	@Autowired
 	LoginRepository loginRepository;
-	
+
 	@Transactional
 	public boolean validateUser(LoginDTO loginDTO) {
-		if(loginRepository.fetchUser(loginDTO)!=null)
+		if (loginRepository.fetchUser(loginDTO) != null)
 			return true;
 		return false;
 	}

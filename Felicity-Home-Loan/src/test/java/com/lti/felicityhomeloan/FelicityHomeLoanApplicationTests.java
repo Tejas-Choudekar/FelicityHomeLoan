@@ -1,5 +1,7 @@
 package com.lti.felicityhomeloan;
 
+import java.text.SimpleDateFormat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,83 +13,80 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lti.felicityhomeloan.dto.LoginDTO;
-import com.lti.felicityhomeloan.entity.IncomeDetailsEntity;
-import com.lti.felicityhomeloan.entity.LoanDetailsEntity;
-import com.lti.felicityhomeloan.entity.PersonalDetailsEntity;
-import com.lti.felicityhomeloan.entity.PropertyDetailsEntity;
-import com.lti.felicityhomeloan.repository.HomeLoanRepository;
+import com.lti.felicityhomeloan.entity.IncomeDetails;
+import com.lti.felicityhomeloan.entity.LoanDetails;
+import com.lti.felicityhomeloan.entity.PersonalDetails;
+import com.lti.felicityhomeloan.entity.PropertyDetails;
+import com.lti.felicityhomeloan.repository.BaseRepository;
 import com.lti.felicityhomeloan.repository.LoginRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Rollback(false)
-@AutoConfigureTestDatabase(replace=Replace.NONE)
+@AutoConfigureTestDatabase(replace = Replace.NONE)
 public class FelicityHomeLoanApplicationTests {
-	
+
 	@Autowired
-	private HomeLoanRepository homeLoanRepo;
-	
+	private BaseRepository baseRepo;
+
 	@Autowired
 	private LoginRepository loginRepo;
-	PropertyDetailsEntity propertyDetails = new PropertyDetailsEntity();
-	
-	
+	PropertyDetails propertyDetails = new PropertyDetails();
 
 	@Test
 	public void contextLoads() {
-		
-		propertyDetails.setPropertyName("Jalsa");
-		propertyDetails.setPropertyLocation("Juhu Beach");
+
+		propertyDetails.setPropertyName("Army Colony");
+		propertyDetails.setPropertyLocation("Nerul");
 		propertyDetails.setEstimatedAmount(5000000);
-		
-		homeLoanRepo.genericadd(propertyDetails);
+
+		baseRepo.add(propertyDetails);
 	}
-	
+
 	@Test
 	public void testIncomeDetails() {
-		IncomeDetailsEntity incomeDetails = new IncomeDetailsEntity();
+		IncomeDetails incomeDetails = new IncomeDetails();
 		incomeDetails.setTypeOfEmployee("Selfemployeed");
 		incomeDetails.setRetirementAge(68);
-		incomeDetails.setOrganisationType("Entertainment");
-		incomeDetails.setEmployeerName("Bollywood");
+		incomeDetails.setOrganisationType("Government");
+		incomeDetails.setEmployerName("LTI");
 		incomeDetails.setSalary(500000);
-		
-		homeLoanRepo.genericadd(incomeDetails);
+
+		baseRepo.add(incomeDetails);
 	}
-	
+
 	@Test
 	public void testLoanDetails() {
-		LoanDetailsEntity loanDetails = new LoanDetailsEntity();
-		//loanDetails.setApplicationId(0003);
-		loanDetails.setMaxGrantableLoan(50000);
-		loanDetails.setRateOfInterest(5);
-		loanDetails.setTenure(2);
+		LoanDetails loanDetails = new LoanDetails();
+		// loanDetails.setApplicationId(0003);
+		loanDetails.setMaxGrantableLoan(25000);
+		loanDetails.setRateOfInterest(8.5);
+		loanDetails.setTenure(20);
 		loanDetails.setLoanAmount(20000);
-		homeLoanRepo.genericadd(loanDetails);
+		baseRepo.add(loanDetails);
 	}
-	
+
 	@Test
-	public void testPersonalDetails () {
-		PersonalDetailsEntity personalDetails = new PersonalDetailsEntity();
-		//personalDetails.setApplicationId(0003);
-		personalDetails.setFirstName("Prathyusha");
-		personalDetails.setLastName("Muthineni");
+	public void testPersonalDetails() throws Exception {
+		PersonalDetails personalDetails = new PersonalDetails();
+		// personalDetails.setApplicationId(0003);
+		personalDetails.setFirstName("Rishika");
+		personalDetails.setLastName("Karna");
 		personalDetails.setMiddleName("Rao");
-		personalDetails.setBirthDate("16/11/1996");
+		personalDetails.setBirthDate(new SimpleDateFormat("dd/MM/yyyy").parse("13/01/1996"));
 		personalDetails.setPhoneNumber("9209848233");
-		personalDetails.setAdharNumber("440030014246");
+		personalDetails.setAadharNumber("440030014246");
 		personalDetails.setNationality("Indian");
-		personalDetails.setEmailId("pritirao@gmail.com");
-		personalDetails.setPassword("priti123");
-		personalDetails.setConfirmPassword("priti123");
+		personalDetails.setEmailId("rishika01@gmail.com");
+		personalDetails.setPassword("rishika123");
 		personalDetails.setPanNumber("BUCKO210K");
 		personalDetails.setGender("Female");
-		homeLoanRepo.genericadd(personalDetails);
+		baseRepo.add(personalDetails);
 	}
-	
+
 	@Test
 	@Transactional
-	public void testLogin () {
+	public void testLogin() {
 		LoginDTO login = new LoginDTO();
 		login.setEmailId("amit.bacchan@gmail.com");
 		login.setPassword("amitbacchan123");
@@ -95,4 +94,3 @@ public class FelicityHomeLoanApplicationTests {
 	}
 
 }
-

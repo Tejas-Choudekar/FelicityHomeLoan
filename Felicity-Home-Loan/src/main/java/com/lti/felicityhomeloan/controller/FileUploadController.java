@@ -15,31 +15,21 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @CrossOrigin
 public class FileUploadController {
-	public static String uploadDirectory = System.getProperty("user.dir")+"/uploads";
+	public static String uploadDirectory = System.getProperty("user.dir") + "/uploads";
 
-	@CrossOrigin
-	@RequestMapping("/")
-	public String Uploadpage(Model model) {
-		return "UploadView";
-	}
-	
-
-	@CrossOrigin
-	@RequestMapping(path="/upload", consumes = "multipart/form-data")
+	@RequestMapping(path = "/upload", consumes = "multipart/form-data")
 	public String upload(Model model, @RequestParam("image") MultipartFile[] files) {
 		StringBuilder fileNames = new StringBuilder();
-		for(MultipartFile file : files) {
+		for (MultipartFile file : files) {
 			Path fileNameAndPath = Paths.get(uploadDirectory, file.getOriginalFilename());
 			fileNames.append(file.getOriginalFilename());
 			try {
 				Files.write(fileNameAndPath, file.getBytes());
-			} catch(IOException e){
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		//return "Successfully uploaded files "+fileNames.toString();
-		return "{\"status\" : \"Successfully uploaded files\"} "+fileNames.toString();
-		//return "UploadStatusView";
+		return ("{\"status\" : \"Successfully uploaded files\"} " + fileNames.toString());
 	}
 
 }

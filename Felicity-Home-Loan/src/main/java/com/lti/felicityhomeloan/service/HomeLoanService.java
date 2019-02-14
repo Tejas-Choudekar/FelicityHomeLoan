@@ -4,40 +4,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.lti.felicityhomeloan.entity.IncomeDetailsEntity;
-import com.lti.felicityhomeloan.entity.LoanDetailsEntity;
-import com.lti.felicityhomeloan.entity.PersonalDetailsEntity;
-import com.lti.felicityhomeloan.entity.PropertyDetailsEntity;
-import com.lti.felicityhomeloan.repository.HomeLoanRepository;
-
+import com.lti.felicityhomeloan.entity.IncomeDetails;
+import com.lti.felicityhomeloan.entity.LoanDetails;
+import com.lti.felicityhomeloan.entity.PersonalDetails;
+import com.lti.felicityhomeloan.entity.PropertyDetails;
+import com.lti.felicityhomeloan.repository.BaseRepository;
 
 @Service
 public class HomeLoanService {
 	@Autowired
-	private HomeLoanRepository homeLoanRepository;
-	
+	private BaseRepository baseRepository;
+
 	@Transactional
-	public void add(PropertyDetailsEntity propertyDetails) {
-		homeLoanRepository.genericadd(propertyDetails);
+	public void add(PropertyDetails propertyDetails) {
+		baseRepository.add(propertyDetails);
 	}
-	
+
 	@Transactional
-	public void add(IncomeDetailsEntity incomeDetails) {
-		homeLoanRepository.genericadd(incomeDetails);
+	public void add(IncomeDetails incomeDetails) {
+		baseRepository.add(incomeDetails);
 	}
-	
+
 	@Transactional
-	public void add(LoanDetailsEntity loanDetails) {
-		homeLoanRepository.genericadd(loanDetails);
+	public void add(LoanDetails loanDetails) {
+		baseRepository.add(loanDetails);
 	}
-	
+
 	@Transactional
-	public void add(PersonalDetailsEntity personalDetails) {
-		homeLoanRepository.genericadd(personalDetails);
+	public void add(PersonalDetails personalDetails) {
+		baseRepository.add(personalDetails);
 	}
-	
-	//public Movie fetch(int id) {
-		//return movieRepository.fetch(id);
-	//}
+
+	// public Movie fetch(int id) {
+	// return movieRepository.fetch(id);
+	// }
 
 }
