@@ -6,9 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @SequenceGenerator(name = "seq", initialValue = 1, allocationSize = 100)
 @Entity
@@ -17,7 +21,7 @@ public class PersonalDetails {
 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	@Id
-	private int applicationId;
+	private int personalDetailsId;
 	private String firstName;
 	private String middleName;
 	private String lastName;
@@ -29,13 +33,32 @@ public class PersonalDetails {
 	private String nationality;
 	private String aadharNumber;
 	private String panNumber;
+	
+	@JsonIgnore
+	@OneToOne 
+	@JoinColumn(name = "applicationid") 
+	private PropertyDetails propertyDetails;
 
-	public int getApplicationId() {
-		return applicationId;
+	// PropertyDetailsEntity propertyDetails = new PropertyDetailsEntity();
+
+
+	public PropertyDetails getPropertyDetails() {
+		return propertyDetails;
 	}
 
-	public void setApplicationId(int applicationId) {
-		this.applicationId = applicationId;
+	public void setPropertyDetails(PropertyDetails propertyDetails) {
+		this.propertyDetails = propertyDetails;
+	}
+
+
+	
+
+	public int getPersonalDetailsId() {
+		return personalDetailsId;
+	}
+
+	public void setPersonalDetailsId(int personalDetailsId) {
+		this.personalDetailsId = personalDetailsId;
 	}
 
 	public String getFirstName() {

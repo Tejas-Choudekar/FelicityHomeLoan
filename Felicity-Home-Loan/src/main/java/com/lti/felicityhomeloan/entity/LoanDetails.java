@@ -5,8 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "LOAN_DETAILS")
@@ -15,20 +19,38 @@ public class LoanDetails {
 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	@Id
-	private int applicationId;
+	private int loanDetailsId;
 
 	@Column(name = "max_amt_grantable")
 	private double maxGrantableLoan;
 	private double rateOfInterest;
 	private int tenure;
 	private double loanAmount;
+	
+	@JsonIgnore
+	@OneToOne 
+	@JoinColumn(name = "applicationid") 
+	private PropertyDetails propertyDetails;
 
-	public int getApplicationId() {
-		return applicationId;
+	// PropertyDetailsEntity propertyDetails = new PropertyDetailsEntity();
+
+
+	public PropertyDetails getPropertyDetails() {
+		return propertyDetails;
 	}
 
-	public void setApplicationId(int applicationId) {
-		this.applicationId = applicationId;
+	public void setPropertyDetails(PropertyDetails propertyDetails) {
+		this.propertyDetails = propertyDetails;
+	}
+
+	
+
+	public int getLoanDetailsId() {
+		return loanDetailsId;
+	}
+
+	public void setLoanDetailsId(int loanDetailsId) {
+		this.loanDetailsId = loanDetailsId;
 	}
 
 	public double getMaxGrantableLoan() {

@@ -27,6 +27,5 @@ public class LoginController {
 		} else {
 			return "{\"status\" : \"Username or password invalid!\"}";
 		}
-		// return "{\"status\" : \"Property Details added successfully!\"}";
 	}
 }

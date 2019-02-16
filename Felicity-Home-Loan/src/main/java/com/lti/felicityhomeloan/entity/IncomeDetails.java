@@ -5,8 +5,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 
 @Entity
 @Table(name = "INCOME_DETAILS")
@@ -14,7 +20,7 @@ import javax.persistence.Table;
 public class IncomeDetails {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	@Id
-	private int incomeId;
+	private int incomeDetailsId;
 
 	@Column
 	private String typeOfEmployee;
@@ -30,16 +36,30 @@ public class IncomeDetails {
 
 	@Column
 	private double salary;
+	
+	@JsonIgnore
+	@OneToOne 
+	@JoinColumn(name = "applicationid") 
+	private PropertyDetails propertyDetails;
 
 	// PropertyDetailsEntity propertyDetails = new PropertyDetailsEntity();
 
 
-	public int getIncomeId() {
-		return incomeId;
+	public PropertyDetails getPropertyDetails() {
+		return propertyDetails;
 	}
 
-	public void setIncomeId(int incomeId) {
-		this.incomeId = incomeId;
+	public void setPropertyDetails(PropertyDetails propertyDetails) {
+		this.propertyDetails = propertyDetails;
+	}
+
+	
+	public int getIncomeDetailsId() {
+		return incomeDetailsId;
+	}
+
+	public void setIncomeDetailsId(int incomeDetailsId) {
+		this.incomeDetailsId = incomeDetailsId;
 	}
 
 	public String getTypeOfEmployee() {

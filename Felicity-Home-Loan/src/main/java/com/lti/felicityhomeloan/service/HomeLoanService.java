@@ -1,5 +1,7 @@
 package com.lti.felicityhomeloan.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,9 +36,10 @@ public class HomeLoanService {
 	public void add(PersonalDetails personalDetails) {
 		baseRepository.add(personalDetails);
 	}
-
-	// public Movie fetch(int id) {
-	// return movieRepository.fetch(id);
-	// }
+	
+	@Transactional
+	 public PropertyDetails fetch(int id) {
+		 return baseRepository.fetchById(PropertyDetails.class,id);
+	 }
 
 }
