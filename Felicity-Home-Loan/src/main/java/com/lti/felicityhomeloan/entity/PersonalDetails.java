@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "PERSONAL_DETAILS", uniqueConstraints = @UniqueConstraint(columnNames = "EMAILID"))
 public class PersonalDetails {
 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	@Id
 	private int personalDetailsId;
 	private String firstName;
@@ -33,25 +33,6 @@ public class PersonalDetails {
 	private String nationality;
 	private String aadharNumber;
 	private String panNumber;
-	
-	@JsonIgnore
-	@OneToOne 
-	@JoinColumn(name = "applicationid") 
-	private PropertyDetails propertyDetails;
-
-	// PropertyDetailsEntity propertyDetails = new PropertyDetailsEntity();
-
-
-	public PropertyDetails getPropertyDetails() {
-		return propertyDetails;
-	}
-
-	public void setPropertyDetails(PropertyDetails propertyDetails) {
-		this.propertyDetails = propertyDetails;
-	}
-
-
-	
 
 	public int getPersonalDetailsId() {
 		return personalDetailsId;

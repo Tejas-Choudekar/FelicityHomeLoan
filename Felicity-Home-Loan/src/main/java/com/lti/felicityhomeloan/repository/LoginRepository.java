@@ -15,12 +15,8 @@ public class LoginRepository {
 
 	@PersistenceContext
 	protected EntityManager entityManager;
-@Transactional
+	@Transactional
 	public PersonalDetails fetchUser(LoginDTO loginDTO) {
-//		Query query = entityManager.createQuery("select user from PersonalDetails as user"
-//				+ " where user.emailId=:emailId and user.password=:password");
-//		query.setParameter("emailId", loginDTO.getEmailId());
-//		query.setParameter("password", loginDTO.getPassword());
 	Query query = entityManager.createQuery("select obj from PersonalDetails as obj where obj.emailId=:email and obj.password=:password");
 	query.setParameter("email", loginDTO.getEmailId());
 	query.setParameter("password", loginDTO.getPassword());
@@ -30,8 +26,8 @@ public class LoginRepository {
 		if(pd.getPassword().equals(loginDTO.getPassword()))
 			System.out.println(pd.getPassword());
 	return (PersonalDetails) query.getSingleResult();
-		
-	
 	}
+
+
 
 }

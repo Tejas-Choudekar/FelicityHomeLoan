@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "INCOME_DETAILS")
 @SequenceGenerator(name = "seq", initialValue = 1, allocationSize = 100)
 public class IncomeDetails {
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	@Id
 	private int incomeDetailsId;
 
@@ -36,24 +36,7 @@ public class IncomeDetails {
 
 	@Column
 	private double salary;
-	
-	@JsonIgnore
-	@OneToOne 
-	@JoinColumn(name = "applicationid") 
-	private PropertyDetails propertyDetails;
-
-	// PropertyDetailsEntity propertyDetails = new PropertyDetailsEntity();
-
-
-	public PropertyDetails getPropertyDetails() {
-		return propertyDetails;
-	}
-
-	public void setPropertyDetails(PropertyDetails propertyDetails) {
-		this.propertyDetails = propertyDetails;
-	}
-
-	
+		
 	public int getIncomeDetailsId() {
 		return incomeDetailsId;
 	}

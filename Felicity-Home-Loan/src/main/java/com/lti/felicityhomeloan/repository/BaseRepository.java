@@ -22,8 +22,8 @@ public class BaseRepository {
 	// }
 
 	@Transactional
-	public void add(Object obj) {
-		entityManager.persist(obj);
+	public Object add(Object obj) {
+		return entityManager.merge(obj);
 	}
 
 	@Transactional

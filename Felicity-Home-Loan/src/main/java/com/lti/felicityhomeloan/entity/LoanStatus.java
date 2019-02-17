@@ -13,22 +13,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class LoanStatus {
 	
 	@Id
-	private String status;
+	private int statusId;
 	
-	@JsonIgnore
-	@OneToOne 
-	@JoinColumn(name = "applicationid") 
-	private PropertyDetails propertyDetails;
-
-	// PropertyDetailsEntity propertyDetails = new PropertyDetailsEntity();
-
-
-	public PropertyDetails getPropertyDetails() {
-		return propertyDetails;
+	private String status;
+	public int getStatusId() {
+		return statusId;
 	}
 
-	public void setPropertyDetails(PropertyDetails propertyDetails) {
-		this.propertyDetails = propertyDetails;
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
 	}
 
 	public String getStatus() {
