@@ -21,10 +21,10 @@ public class LoginRepository {
 	query.setParameter("email", loginDTO.getEmailId());
 	query.setParameter("password", loginDTO.getPassword());
 
-		PersonalDetails pd=	((PersonalDetails) query.getSingleResult());
-		System.out.println(pd.getPassword());
-		if(pd.getPassword().equals(loginDTO.getPassword()))
-			System.out.println(pd.getPassword());
+//		PersonalDetails pd=	((PersonalDetails) query.getSingleResult());
+//		System.out.println(pd.getPassword());
+//		if(pd.getPassword().equals(loginDTO.getPassword()))
+//			System.out.println(pd.getPassword());
 	return (PersonalDetails) query.getSingleResult();
 	}
 
